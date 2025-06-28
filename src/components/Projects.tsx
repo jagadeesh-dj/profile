@@ -1,111 +1,124 @@
 import React from 'react';
-import { ExternalLink, Github, Zap, Shield, Smartphone } from 'lucide-react';
+import { ExternalLink, Github } from 'lucide-react';
+import { motion } from 'framer-motion';
+
+const projects = [
+  {
+    title: 'E-Commerce Platform',
+    description: 'A full-stack e-commerce solution with authentication, payments, and admin tools.',
+    image: 'https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg',
+    tags: ['React', 'Node.js', 'PostgreSQL', 'Stripe'],
+    liveUrl: '#',
+    githubUrl: '#',
+  },
+  {
+    title: 'Task Management App',
+    description: 'Real-time task manager with team boards and drag-n-drop UI.',
+    image: 'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg',
+    tags: ['React', 'Socket.io', 'MongoDB', 'Express'],
+    liveUrl: '#',
+    githubUrl: '#',
+  },
+  {
+    title: 'Mobile Weather App',
+    description: 'Forecasting app with API maps, alerts, and smooth mobile UX.',
+    image: 'https://images.pexels.com/photos/1118873/pexels-photo-1118873.jpeg',
+    tags: ['React Native', 'API Integration', 'Redux', 'TypeScript'],
+    liveUrl: '#',
+    githubUrl: '#',
+  },
+];
+
+const cardVariants = {
+  offscreen: {
+    opacity: 0,
+    y: 100,
+  },
+  onscreen: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: 'spring',
+      bounce: 0.3,
+      duration: 0.8,
+    },
+  },
+};
 
 const Projects = () => {
-  const projects = [
-    {
-      title: 'E-Commerce Platform',
-      description: 'A full-stack e-commerce solution built with React, Node.js, and PostgreSQL. Features include user authentication, payment processing, and admin dashboard.',
-      image: 'https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg',
-      tags: ['React', 'Node.js', 'PostgreSQL', 'Stripe'],
-      liveUrl: '#',
-      githubUrl: '#',
-      icon: Zap
-    },
-    {
-      title: 'Task Management App',
-      description: 'A collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features.',
-      image: 'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg',
-      tags: ['React', 'Socket.io', 'MongoDB', 'Express'],
-      liveUrl: '#',
-      githubUrl: '#',
-      icon: Shield
-    },
-    {
-      title: 'Mobile Weather App',
-      description: 'A responsive weather application with location-based forecasts, interactive maps, and weather alerts. Built with modern web technologies.',
-      image: 'https://images.pexels.com/photos/1118873/pexels-photo-1118873.jpeg',
-      tags: ['React Native', 'API Integration', 'Redux', 'TypeScript'],
-      liveUrl: '#',
-      githubUrl: '#',
-      icon: Smartphone
-    }
-  ];
-
   return (
-    <section id="projects" className="py-20 relative bg-gradient-to-b from-gray-900 to-black">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(100,100,255,0.05),transparent_25%),radial-gradient(circle_at_70%_50%,rgba(255,100,255,0.05),transparent_25%)]"></div>
-
-      {/* Background decorations */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-20 left-0 w-72 h-72 bg-blue-900/20 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-10 right-10 w-72 h-72 bg-purple-900/20 rounded-full blur-3xl"></div>
+    <section className="py-32 relative bg-gray-900" style={{ minHeight: `${projects.length * 700}px` }}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 className="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-teal-400 to-green-400 mb-6">
+          Sticky Overlap Card Showcase
+        </h2>
+        <p className="text-slate-300 text-lg max-w-2xl mx-auto">
+          Explore my projects with a sticky overlap scroll effect and glassmorphism design ✨
+        </p>
       </div>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-slate-800 mb-4">Featured Projects</h2>
-          <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-            Here are some of my recent projects that showcase my skills and passion for creating 
-            innovative digital solutions.
-          </p>
-        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => {
-            const IconComponent = project.icon;
-            return (
-              <div
-                key={index}
-                className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 group"
-              >
-                <div className="relative overflow-hidden">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-40 object-cover group-hover:scale-110 transition-transform duration-300"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full p-2">
-                    <IconComponent className="h-6 w-6 text-blue-600" />
-                  </div>
-                </div>
-                
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-slate-800 mb-3">{project.title}</h3>
-                  <p className="text-slate-600 text-sm mb-4 leading-relaxed">{project.description}</p>
-                  
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    {project.tags.map((tag, tagIndex) => (
-                      <span
-                        key={tagIndex}
-                        className="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-xs font-medium"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                  
-                  <div className="flex space-x-4">
-                    <a
-                      href={project.liveUrl}
-                      className="flex items-center text-blue-600 hover:text-blue-700 font-medium transition-colors duration-200"
-                    >
-                      <ExternalLink className="h-4 w-4 mr-1" />
-                      Live Demo
-                    </a>
-                    <a
-                      href={project.githubUrl}
-                      className="flex items-center text-slate-600 hover:text-slate-700 font-medium transition-colors duration-200"
-                    >
-                      <Github className="h-4 w-4 mr-1" />
-                      Code
-                    </a>
-                  </div>
-                </div>
+      <div className="relative mt-24 px-4 sm:px-6 lg:px-8 flex flex-col items-center">
+        {projects.map((project, index) => (
+          <motion.div
+            key={index}
+            initial="offscreen"
+            whileInView="onscreen"
+            viewport={{ once: true, amount: 0.4 }}
+            variants={cardVariants}
+            className={`
+              relative w-full max-w-4xl 
+              bg-gray-900/40 backdrop-blur-lg border border-gray-700/50 
+              shadow-2xl rounded-2xl overflow-hidden 
+              transition-all duration-500 ease-out
+              hover:shadow-[0_0_30px_rgba(59,130,246,0.3)]
+              hover:-translate-y-2
+              sticky
+            `}
+            style={{
+              top: '100px',
+              zIndex: index + 1,
+              minHeight: '600px',
+              marginBottom: '100px',
+            }}
+          >
+            <div className="relative">
+              <img
+                src={project.image}
+                alt={project.title}
+                className="w-full h-64 sm:h-80 object-cover transition-transform duration-500 hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent" />
+            </div>
+            <div className="p-6 sm:p-8 relative">
+              <h3 className="text-2xl sm:text-3xl font-semibold text-white mb-3">{project.title}</h3>
+              <p className="text-slate-300 text-sm sm:text-base mb-4 leading-relaxed">{project.description}</p>
+              <div className="flex flex-wrap gap-2 mb-6">
+                {project.tags.map((tag, i) => (
+                  <span
+                    key={i}
+                    className="bg-blue-500/10 border border-blue-500/30 text-blue-300 px-3 py-1 text-xs sm:text-sm rounded-full"
+                  >
+                    {tag}
+                  </span>
+                ))}
               </div>
-            );
-          })}
-        </div>
+              <div className="flex gap-6 text-sm sm:text-base">
+                <a
+                  href={project.liveUrl}
+                  className="flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors"
+                >
+                  <ExternalLink className="w-5 h-5" /> Live Demo
+                </a>
+                <a
+                  href={project.githubUrl}
+                  className="flex items-center gap-2 text-slate-300 hover:text-white transition-colors"
+                >
+                  <Github className="w-5 h-5" /> Source Code
+                </a>
+              </div>
+            </div>
+          </motion.div>
+        ))}
       </div>
     </section>
   );

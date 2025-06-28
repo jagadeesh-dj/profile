@@ -1,4 +1,3 @@
-import React from 'react';
 import { Github, Linkedin, Mail, Download, ArrowDown } from 'lucide-react';
 
 const Hero = () => {
@@ -10,7 +9,7 @@ const Hero = () => {
   };
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
+    <section id="home" className="min-h-screen flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800"></div>
       <div className="absolute inset-0 bg-[url('https://images.pexels.com/photos/4164418/pexels-photo-4164418.jpeg')] bg-cover bg-center opacity-10"></div>
       
